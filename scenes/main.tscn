@@ -92,11 +92,7 @@ action_right = "camera_right"
 action_up = "camera_up"
 action_down = "camera_down"
 
-[node name="Control" type="Control" parent="HUD/HBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(2.08165e-12, 150)
-layout_mode = 2
-
-[node name="Control" type="Control" parent="HUD/HBoxContainer/VBoxContainer/Control"]
+[node name="Control" type="Control" parent="HUD/HBoxContainer/VBoxContainer/RightControl"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -108,18 +104,18 @@ offset_top = -40.0
 grow_horizontal = 0
 grow_vertical = 0
 
-[node name="JumpButton" type="TouchScreenButton" parent="HUD/HBoxContainer/VBoxContainer/Control/Control"]
-position = Vector2(-110, -50)
+[node name="JumpButton" type="TouchScreenButton" parent="HUD/HBoxContainer/VBoxContainer/RightControl/Control"]
+position = Vector2(-150, -80)
 texture_normal = ExtResource("6_jv6mo")
 action = "jump"
 
-[node name="ShootButton" type="TouchScreenButton" parent="HUD/HBoxContainer/VBoxContainer/Control/Control"]
-position = Vector2(-170, -110)
+[node name="ShootButton" type="TouchScreenButton" parent="HUD/HBoxContainer/VBoxContainer/RightControl/Control"]
+position = Vector2(-220, -150)
 texture_normal = ExtResource("7_kaujq")
 action = "shoot"
 
-[node name="WeaponButton" type="TouchScreenButton" parent="HUD/HBoxContainer/VBoxContainer/Control/Control"]
-position = Vector2(-50, -110)
+[node name="WeaponButton" type="TouchScreenButton" parent="HUD/HBoxContainer/VBoxContainer/RightControl/Control"]
+position = Vector2(-80, -150)
 texture_normal = ExtResource("7_frnxt")
 action = "weapon_toggle"
 
