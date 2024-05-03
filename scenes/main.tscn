@@ -1,12 +1,16 @@
-[gd_scene load_steps=11 format=3 uid="uid://dxvvlck8lej3f"]
+[gd_scene load_steps=15 format=3 uid="uid://dxvvlck8lej3f"]
 
 [ext_resource type="Environment" uid="uid://jvmpkdwaeaq" path="res://scenes/main-environment.tres" id="1_q8fpv"]
 [ext_resource type="PackedScene" uid="uid://dl2ed4gkybggf" path="res://objects/player.tscn" id="2_elriq"]
 [ext_resource type="Script" path="res://scripts/hud.gd" id="3_s8mkj"]
 [ext_resource type="FontFile" uid="uid://biqtga8moh7ah" path="res://fonts/lilita_one_regular.ttf" id="3_w27de"]
+[ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="4_s8n03"]
 [ext_resource type="PackedScene" uid="uid://dpm3l05d7fu35" path="res://objects/platform.tscn" id="5_3s40e"]
 [ext_resource type="PackedScene" uid="uid://r7rt7pth4u7o" path="res://objects/wall_low.tscn" id="5_6vel1"]
+[ext_resource type="Texture2D" uid="uid://cyqmmk0d6d0oa" path="res://sprites/transparentDarkJump.png" id="6_jv6mo"]
 [ext_resource type="PackedScene" uid="uid://c71evdjblk5wp" path="res://objects/wall_high.tscn" id="7_cabne"]
+[ext_resource type="Texture2D" uid="uid://cg886n0b27klq" path="res://sprites/transparentDarkNext.png" id="7_frnxt"]
+[ext_resource type="Texture2D" uid="uid://pq6j8367s36i" path="res://sprites/transparentDarkShoot.png" id="7_kaujq"]
 [ext_resource type="PackedScene" uid="uid://bvx5cvigosg0s" path="res://objects/platform_large_grass.tscn" id="7_wggef"]
 [ext_resource type="PackedScene" uid="uid://d2g78tpqbyf5g" path="res://objects/enemy.tscn" id="8_7ty2f"]
 
@@ -31,6 +35,93 @@ shadow_opacity = 0.75
 
 [node name="HUD" type="CanvasLayer" parent="."]
 script = ExtResource("3_s8mkj")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+
+[node name="Control" type="Control" parent="HUD/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LeftJoypad" parent="HUD/HBoxContainer/Control" instance=ExtResource("4_s8n03")]
+layout_mode = 1
+anchors_preset = 15
+anchor_top = 0.0
+anchor_right = 1.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+joystick_mode = 2
+visibility_mode = 2
+action_left = "move_left"
+action_right = "move_right"
+action_up = "move_forward"
+action_down = "move_back"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RightControl" type="Control" parent="HUD/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="RightJoypad" parent="HUD/HBoxContainer/VBoxContainer/RightControl" instance=ExtResource("4_s8n03")]
+layout_mode = 1
+anchors_preset = 15
+anchor_top = 0.0
+anchor_right = 1.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+joystick_mode = 2
+visibility_mode = 2
+action_left = "camera_left"
+action_right = "camera_right"
+action_up = "camera_up"
+action_down = "camera_down"
+
+[node name="Control" type="Control" parent="HUD/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(2.08165e-12, 150)
+layout_mode = 2
+
+[node name="Control" type="Control" parent="HUD/HBoxContainer/VBoxContainer/Control"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="JumpButton" type="TouchScreenButton" parent="HUD/HBoxContainer/VBoxContainer/Control/Control"]
+position = Vector2(-110, -50)
+texture_normal = ExtResource("6_jv6mo")
+action = "jump"
+
+[node name="ShootButton" type="TouchScreenButton" parent="HUD/HBoxContainer/VBoxContainer/Control/Control"]
+position = Vector2(-170, -110)
+texture_normal = ExtResource("7_kaujq")
+action = "shoot"
+
+[node name="WeaponButton" type="TouchScreenButton" parent="HUD/HBoxContainer/VBoxContainer/Control/Control"]
+position = Vector2(-50, -110)
+texture_normal = ExtResource("7_frnxt")
+action = "weapon_toggle"
 
 [node name="Crosshair" type="TextureRect" parent="HUD"]
 anchors_preset = 8

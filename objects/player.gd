@@ -47,7 +47,7 @@ signal health_updated
 
 func _ready():
 	
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
 	weapon = weapons[weapon_index] # Weapon must never be nil
 	initiate_change_weapon(weapon_index)
@@ -73,7 +73,7 @@ func _physics_process(delta):
 	
 	# Rotation
 	
-	camera.rotation.z = lerp_angle(camera.rotation.z, -input_mouse.x * 25 * delta, delta * 5)	
+	#camera.rotation.z = lerp_angle(camera.rotation.z, -input_mouse.x * 25 * delta, delta * 5)	
 	
 	camera.rotation.x = lerp_angle(camera.rotation.x, rotation_target.x, delta * 25)
 	rotation.y = lerp_angle(rotation.y, rotation_target.y, delta * 25)
@@ -105,27 +105,27 @@ func _physics_process(delta):
 
 # Mouse movement
 
-func _input(event):
-	if event is InputEventMouseMotion and mouse_captured:
-		
-		input_mouse = event.relative / mouse_sensitivity
-		
-		rotation_target.y -= event.relative.x / mouse_sensitivity
-		rotation_target.x -= event.relative.y / mouse_sensitivity
+#func _input(event):
+#	if event is InputEventMouseMotion and mouse_captured:
+#		
+#		input_mouse = event.relative / mouse_sensitivity
+#		
+#		rotation_target.y -= event.relative.x / mouse_sensitivity
+#		rotation_target.x -= event.relative.y / mouse_sensitivity
 
 func handle_controls(_delta):
 	
 	# Mouse capture
 	
-	if Input.is_action_just_pressed("mouse_capture"):
-		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-		mouse_captured = true
-	
-	if Input.is_action_just_pressed("mouse_capture_exit"):
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-		mouse_captured = false
-		
-		input_mouse = Vector2.ZERO
+	#if Input.is_action_just_pressed("mouse_capture"):
+	#	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	#	mouse_captured = true
+	#
+	#if Input.is_action_just_pressed("mouse_capture_exit"):
+	#	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	#	mouse_captured = false
+	#	
+	#	input_mouse = Vector2.ZERO
 	
 	# Movement
 	
